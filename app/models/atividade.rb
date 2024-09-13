@@ -7,4 +7,12 @@ class Atividade < ApplicationRecord
   enum area: { geral: 0, mecanica: 1, eletronica: 2, programacao: 3, marketing: 4 }
 
   validates :tematica, :objetivo, :acoes_realizadas, :numero_participantes, presence: true
+  
+  def self.filter_by_area(area)
+    if area.present?
+      where(area: area)
+    else
+      all
+    end
+  end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  # Rotas do Devise
   devise_for :users
   
   # Define a rota autenticada como a página inicial
@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   end
 
   # Define a página de login como root quando não autenticado
-  root to: 'devise/sessions#new'
+  devise_scope :user do
+    root to: 'devise/sessions#new'
+  end
 
   # Rotas para atividades
   resources :atividades do
@@ -25,9 +27,5 @@ Rails.application.routes.draw do
       get 'register_mentor', to: 'mentores#register_mentor', as: 'register_mentor'
       post 'create_mentor', to: 'mentores#create_mentor', as: 'create_mentor'
     end
-  end
-  devise_scope :user do
-    get '/login', to: 'devise/sessions#new'
-    delete '/logout', to: 'devise/sessions#destroy'
   end
 end

@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AtividadeRegistro</title>
+    <title>ActivityControl</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <div class="columns">
-      <!-- Coluna para a sidebar -->
-      <div class="column is-one-quarter">
-        <%= render 'layouts/sidebar' %>
-      </div>
+    <nav>
+      <!-- Menu de navegação -->
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
 
-      <!-- Coluna para o conteúdo principal -->
-      <div class="column">
-        <%= yield %>
-      </div>
-    </div>
+        <!-- Mostrar o link "Registrar Atividade" apenas para Alunos logados -->
+        <% if user_signed_in? && current_user.aluno? %>
+          <li>
+            <%= link_to 'Registrar Atividade', new_atividade_path %>
+          </li>
+        <% end %>
+
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </nav>
+
+    <%= yield %>
   </body>
 </html>

@@ -1,37 +1,17 @@
 <aside class="menu">
   <p class="menu-label">Menu</p>
   <ul class="menu-list">
-    <!-- Home - Listagem de atividades -->
-    <li>
-      <%= link_to 'Home', authenticated_root_path %>
-    </li>
+    <!-- Link para a Home -->
+    <li><%= link_to 'Home', authenticated_root_path %></li>
 
-    <!-- Mostrar o link "Registrar Atividade" apenas para Alunos -->
-    <% if current_user.aluno? %>
-      <li>
-        <%= link_to 'Registrar Atividade', new_atividade_path %>
-      </li>
+    <!-- Mostrar links para Mentores -->
+    <% if user_signed_in? && current_user.mentor? %>
+      <li><%= link_to 'Registrar Aluno', new_mentores_register_student_path %></li>
+      <li><%= link_to 'Registrar Mentor', new_mentores_register_mentor_path %></li>
+      <li><%= link_to 'Gerenciar Alunos', mentores_path %></li>
     <% end %>
 
-    <!-- Mostrar links de gestão de alunos e mentores apenas para Mentores -->
-    <% if current_user.mentor? %>
-      <li>
-        <%= link_to 'Gerenciar Alunos', mentores_path %>
-      </li>
-      <li>
-        <%= link_to 'Registrar Aluno', new_mentores_register_student_path %>
-      </li>
-      <li>
-        <%= link_to 'Registrar Mentor', new_mentores_register_mentor_path %>
-      </li>
-      <li>
-        <%= link_to 'Exportar PDF das Atividades', export_pdf_atividades_path %>
-      </li>
-    <% end %>
-
-    <!-- Logout -->
-    <li>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-    </li>
+    <!-- Link de Logout -->
+    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
   </ul>
 </aside>
