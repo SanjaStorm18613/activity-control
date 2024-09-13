@@ -1,0 +1,39 @@
+<h1>Atividades</h1>
+
+<div class="field">
+  <%= form_with url: atividades_path, method: :get, local: true do %>
+    <label for="area">Filtrar por Área:</label>
+    <%= select_tag :area, options_for_select(Atividade.areas.keys.map { |area| [area.humanize, area] }, params[:area]), prompt: 'Selecione uma área' %>
+    <%= submit_tag 'Filtrar', class: 'button is-primary' %>
+  <% end %>
+</div>
+
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Temática</th>
+      <th>Área</th>
+      <th>Criado por</th>
+      <th>Responsável</th>
+      <th>Data de Criação</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @atividades.each do |atividade| %>
+      <tr>
+        <td><%= atividade.tematica %></td>
+        <td><%= atividade.area.humanize %></td>
+        <td><%= atividade.user.nome_completo %></td>
+        <td><%= atividade.responsavel.nome_completo %></td>
+        <td><%= atividade.created_at.strftime("%d/%m/%Y") %></td>
+        <td>
+          <%= link_to 'Ver Detalhes', atividade_path(atividade), class: 'button is-small is-info' %>
+          <% if current_user.mentor? %>
+            <%= link_to 'Excluir', atividade_path(atividade), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'button is-small is-danger' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

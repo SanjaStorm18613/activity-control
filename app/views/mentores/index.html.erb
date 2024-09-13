@@ -1,0 +1,24 @@
+<h1>Alunos Registrados</h1>
+
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Nome Completo</th>
+      <th>Área</th>
+      <th>Usuário</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @alunos.each do |aluno| %>
+      <tr>
+        <td><%= aluno.nome_completo %></td>
+        <td><%= aluno.area.humanize %></td>
+        <td><%= aluno.username %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Registrar Novo Aluno', new_mentores_register_student_path, class: 'button is-primary' %>
+<%= link_to 'Registrar Novo Mentor', new_mentores_register_mentor_path, class: 'button is-link' %>

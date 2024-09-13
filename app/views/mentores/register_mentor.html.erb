@@ -1,0 +1,30 @@
+<h1>Registrar Novo Mentor</h1>
+
+<%= form_with model: @user, url: mentores_create_mentor_path, local: true do |form| %>
+  <div class="field">
+    <%= form.label :nome_completo, 'Nome Completo' %>
+    <div class="control">
+      <%= form.text_field :nome_completo, class: 'input', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :username, 'Usuário' %>
+    <div class="control">
+      <%= form.text_field :username, class: 'input', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :password, 'Senha' %>
+    <div class="control">
+      <%= form.password_field :password, class: 'input', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= form.submit 'Registrar Mentor', class: 'button is-primary' %>
+    </div>
+  </div>
+<% end %>

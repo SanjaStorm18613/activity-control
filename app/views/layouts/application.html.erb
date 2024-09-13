@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AtividadeRegistro</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <div class="columns">
+      <!-- Coluna para a sidebar -->
+      <div class="column is-one-quarter">
+        <%= render 'layouts/sidebar' %>
+      </div>
+
+      <!-- Coluna para o conteúdo principal -->
+      <div class="column">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

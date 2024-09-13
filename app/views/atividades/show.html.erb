@@ -1,0 +1,18 @@
+<h1>Detalhes da Atividade</h1>
+
+<p><strong>Temática:</strong> <%= @atividade.tematica %></p>
+<p><strong>Área:</strong> <%= @atividade.area.humanize %></p>
+<p><strong>Objetivo:</strong> <%= @atividade.objetivo %></p>
+<p><strong>Ações Realizadas:</strong> <%= @atividade.acoes_realizadas %></p>
+<p><strong>Número de Participantes:</strong> <%= @atividade.numero_participantes %></p>
+<p><strong>Responsável:</strong> <%= @atividade.responsavel.nome_completo %></p>
+<p><strong>Criado por:</strong> <%= @atividade.user.nome_completo %></p>
+
+<h2>Participantes Presentes</h2>
+<ul>
+  <% @atividade.participantes.each do |participante| %>
+    <li><%= participante.nome_completo %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Voltar', atividades_path, class: 'button is-link' %>

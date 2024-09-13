@@ -1,0 +1,58 @@
+<h1>Nova Atividade</h1>
+
+<%= form_with model: @atividade, local: true do |form| %>
+  <div class="field">
+    <%= form.label :tematica, 'Temática' %>
+    <div class="control">
+      <%= form.text_field :tematica, class: 'input', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :area, 'Área' %>
+    <div class="control">
+      <%= form.select :area, Atividade.areas.keys.map { |area| [area.humanize, area] }, { prompt: 'Selecione uma área' }, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :objetivo, 'Objetivo' %>
+    <div class="control">
+      <%= form.text_area :objetivo, class: 'textarea', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :acoes_realizadas, 'Ações Realizadas' %>
+    <div class="control">
+      <%= form.text_area :acoes_realizadas, class: 'textarea', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero_participantes, 'Número de Participantes' %>
+    <div class="control">
+      <%= form.number_field :numero_participantes, class: 'input', required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :responsavel_id, 'Responsável pela Atividade' %>
+    <div class="control">
+      <%= form.collection_select :responsavel_id, @mentors, :id, :nome_completo, { prompt: 'Selecione um responsável' }, class: 'input' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :participante_ids, 'Participantes Presentes' %>
+    <div class="control">
+      <%= form.collection_select :participante_ids, @students, :id, :nome_completo, {}, { multiple: true, class: 'input' } %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= form.submit 'Registrar Atividade', class: 'button is-primary' %>
+    </div>
+  </div>
+<% end %>
